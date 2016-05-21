@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         SegundaFragment segundaFragment = new SegundaFragment();
-        fragmentTransaction.replace(android.R.id.content, segundaFragment);
+        fragmentTransaction.replace(R.id.fragment, segundaFragment);
         fragmentTransaction.commit();
     }
 }
