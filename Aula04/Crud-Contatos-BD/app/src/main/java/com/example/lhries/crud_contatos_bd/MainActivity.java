@@ -2,6 +2,7 @@ package com.example.lhries.crud_contatos_bd;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -112,9 +113,27 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuExcluir:
                 excluirContatoSelecionado();
                 break;
+            case R.id.menuTelefonar:
+                ligarParaContatoSelecionado();
             default:
                 break;
         }
         return super.onContextItemSelected(item);
     }
+
+    private void ligarParaContatoSelecionado() {
+        if(contatoSelecionado==null){
+            Toast.makeText(this, "Erro ao ligar para um contato!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + contatoSelecionado.getTelefone()));
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
 }
+
+
